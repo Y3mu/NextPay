@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextPay - Global Finance Made Simple</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">NextPay</div>
+            <p>Global Finance Made Simple</p>
+        </div>
+
+        <div class="nav-menu">
+            <button class="nav-btn" onclick="showPage('welcome')">Home</button>
+            <button class="nav-btn active" onclick="showPage('login')">Login</button>
+            <button class="nav-btn" onclick="showPage('signup')">Sign Up</button>
+            <button class="nav-btn" onclick="showPage('dashboard')">Dashboard</button>
+            <button class="nav-btn" onclick="showPage('transfer')">Transfer Money</button>
+            <button class="nav-btn" onclick="showPage('insurance')">Insurance</button>
+            <button class="nav-btn" onclick="showPage('analytics')">Analytics</button>
+        </div>
+
+        <!-- Welcome Page -->
+        <div id="welcome" class="page">
+            <div class="welcome-section">
+                <h1>Welcome to NextPay</h1>
+                <p>Your trusted partner for global financial transactions, insurance, and money management.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌍</div>
+                        <h3>Global Transfers</h3>
+                        <p>Send money anywhere in the world with competitive rates and instant processing.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Insurance Plans</h3>
+                        <p>Protect yourself and your family with comprehensive insurance coverage.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Spending Analytics</h3>
+                        <p>Track your expenses and gain insights into your financial habits.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Secure Platform</h3>
+                        <p>Bank-level security with end-to-end encryption for all transactions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Page -->
+        <div id="login" class="page active">
+            <h2>Login to NextPay</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required minlength="8">
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <button type="button" class="btn btn-secondary" onclick="showPage('signup')">Don't have an account? Sign Up</button>
+            </form>
+            <div id="loginMessage" class="success-message"></div>
+        </div>
+
+        <!-- Sign Up Page -->
+        <div id="signup" class="page">
+            <h2>Create Your NextPay Account</h2>
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="signupName" required minlength="2" pattern="[a-zA-Z\s]+" title="Name must contain only letters and spaces">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="signupPhone" required pattern="[\+]?[\d\s\-\(\)]{10,}" title="Enter a valid phone number (minimum 10 digits)">
+                </div>
+                <div class="form-group">
+                    <label>Country</label>
+                    <select id="signupCountry" required>
+                        <option value="">Select Country</option>
+                        <option value="US">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="CA">Canada</option>
+                        <option value="AU">Australia</option>
+                        <option value="DE">Germany</option>
+                        <option value="FR">France</option>
+                        <option value="JP">Japan</option>
+                        <option value="IN">India</option>
+                        <option value="BR">Brazil</option>
+                        <option value="AE">United Arab Emirates</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="signupPassword" required minlength="8">
+                    <small style="color: #666; font-size: 12px; margin-top: 5px; display: block;">
+                        Password must be at least 8 characters and contain: uppercase, lowercase, number, and special character (@$!%*?&)
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" required>
+                </div>
+                <button type="submit" class="btn">Create Account</button>
+                <button type="button" class="btn btn-secondary" onclick="showPage('login')">Already have an account? Login</button>
+            </form>
+            <div id="signupMessage" class="success-message"></div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboard" class="page">
+            <h2>Dashboard</h2>
+            <div class="balance-display">$12,847.50</div>
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Recent Transactions</h3>
+                    <div>
+                        <p><strong>Netflix Subscription</strong> - $15.99</p>
+                        <p><strong>Grocery Store</strong> - $127.43</p>
+                        <p><strong>Gas Station</strong> - $45.20</p>
+                        <p><strong>Transfer to John</strong> - $250.00</p>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Quick Actions</h3>
+                    <button class="btn" onclick="showPage('transfer')" style="margin-bottom: 10px;">Send Money</button>
+                    <button class="btn" onclick="showPage('insurance')" style="margin-bottom: 10px;">Buy Insurance</button>
+                    <button class="btn" onclick="showPage('analytics')">View Analytics</button>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Account Info</h3>
+                    <p><strong>Account Type:</strong> Premium</p>
+                    <p><strong>Member Since:</strong> July 2025</p>
+                    <p><strong>Verification:</strong> ✅ Verified</p>
+                    <p><strong>Insurance:</strong> Health & Travel</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transfer Money Page -->
+        <div id="transfer" class="page">
+            <h2>Transfer Money Worldwide</h2>
+            <div class="transfer-form">
+                <form onsubmit="handleTransfer(event)">
+                    <div class="form-group">
+                        <label>Recipient's Name</label>
+                        <input type="text" id="recipientName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Recipient's Email</label>
+                        <input type="email" id="recipientEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Recipient's Country</label>
+                        <select id="recipientCountry" required>
+                            <option value="">Select Country</option>
+                            <option value="US">United States</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="CA">Canada</option>
+                            <option value="AU">Australia</option>
+                            <option value="DE">Germany</option>
+                            <option value="FR">France</option>
+                            <option value="JP">Japan</option>
+                            <option value="IN">India</option>
+                            <option value="BR">Brazil</option>
+                            <option value="AE">United Arab Emirates</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount (USD)</label>
+                        <input type="number" id="transferAmount" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Transfer Method</label>
+                        <select id="transferMethod" required>
+                            <option value="instant">Instant Transfer ($2.99 fee)</option>
+                            <option value="standard">Standard Transfer (Free, 1-3 days)</option>
+                            <option value="bank">Bank Transfer (Free, 3-5 days)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message (Optional)</label>
+                        <textarea id="transferMessage" placeholder="Add a note for the recipient"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Money</button>
+                </form>
+            </div>
+            <div id="transferMessage" class="success-message"></div>
+        </div>
+
+        <!-- Insurance Page -->
+        <div id="insurance" class="page">
+            <h2>Choose Your Insurance Plan</h2>
+            <div class="insurance-plans">
+                <div class="insurance-card" onclick="selectInsurance(this, 'basic')">
+                    <h3>Basic Protection</h3>
+                    <div class="price">$29/month</div>
+                    <ul style="text-align: left; margin: 20px 0;">
+                        <li>Basic health coverage</li>
+                        <li>Emergency medical</li>
+                        <li>24/7 support</li>
+                        <li>Global coverage</li>
+                    </ul>
+                </div>
+                <div class="insurance-card" onclick="selectInsurance(this, 'premium')">
+                    <h3>Premium Protection</h3>
+                    <div class="price">$59/month</div>
+                    <ul style="text-align: left; margin: 20px 0;">
+                        <li>Comprehensive health</li>
+                        <li>Travel insurance</li>
+                        <li>Device protection</li>
+                        <li>Priority support</li>
+                        <li>Family coverage</li>
+                    </ul>
+                </div>
+                <div class="insurance-card" onclick="selectInsurance(this, 'ultimate')">
+                    <h3>Ultimate Protection</h3>
+                    <div class="price">$99/month</div>
+                    <ul style="text-align: left; margin: 20px 0;">
+                        <li>Full health & dental</li>
+                        <li>Comprehensive travel</li>
+                        <li>Identity protection</li>
+                        <li>Investment insurance</li>
+                        <li>Concierge service</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn" onclick="purchaseInsurance()">Purchase Selected Plan</button>
+            </div>
+            <div id="insuranceMessage" class="success-message"></div>
+        </div>
+
+        <!-- Analytics Page -->
+        <div id="analytics" class="page">
+            <h2>Monthly Spending Analytics</h2>
+            <div class="spending-chart">
+                <h3>This Month's Spending: $1,247.82</h3>
+                <div class="chart-bar">
+                    <div class="chart-label">Food & Dining</div>
+                    <div class="chart-progress">
+                        <div class="chart-fill" style="width: 75%"></div>
+                    </div>
+                    <div class="chart-value">$423.50</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-label">Shopping</div>
+                    <div class="chart-progress">
+                        <div class="chart-fill" style="width: 55%"></div>
+                    </div>
+                    <div class="chart-value">$312.75</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-label">Transportation</div>
+                    <div class="chart-progress">
+                        <div class="chart-fill" style="width: 40%"></div>
+                    </div>
+                    <div class="chart-value">$185.20</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-label">Entertainment</div>
+                    <div class="chart-progress">
+                        <div class="chart-fill" style="width: 30%"></div>
+                    </div>
+                    <div class="chart-value">$142.35</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-label">Utilities</div>
+                    <div class="chart-progress">
+                        <div class="chart-fill" style="width: 35%"></div>
+                    </div>
+                    <div class="chart-value">$98.67</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-label">Healthcare</div>
+                    <div class="chart-progress">
+                        <div class="chart-fill" style="width: 20%"></div>
+                    </div>
+                    <div class="chart-value">$85.35</div>
+                </div>
+            </div>
+            
+            <div class="dashboard-grid" style="margin-top: 30px;">
+                <div class="dashboard-card">
+                    <h3>Spending Trends</h3>
+                    <p>📈 <strong>+15%</strong> from last month</p>
+                    <p>🎯 <strong>Budget Status:</strong> 78% used</p>
+                    <p>💡 <strong>Tip:</strong> Consider reducing dining expenses</p>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Savings Goals</h3>
+                    <p>🏖️ <strong>Vacation Fund:</strong> $2,847 / $5,000</p>
+                    <p>🏠 <strong>Emergency Fund:</strong> $8,234 / $10,000</p>
+                    <p>📈 <strong>Investment:</strong> $1,523 / $2,500</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+        let selectedInsurance = null;
+
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = 'error-message';
+            element.style.display = 'block';
+            
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 5000);
+        }
+
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showError('loginMessage', 'Please enter a valid email address');
+                return;
+            }
+            
+            // Validate password length
+            if (password.length < 8) {
+                showError('loginMessage', 'Password must be at least 8 characters long');
+                return;
+            }
+            
+            // Simulate login
+            currentUser = { email: email, name: 'John Doe' };
+            
+            const message = document.getElementById('loginMessage');
+            message.textContent = 'Login successful! Welcome back!';
+            message.className = 'success-message';
+            message.style.display = 'block';
+            
+            setTimeout(() => {
+                showPage('dashboard');
+            }, 1500);
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const phone = document.getElementById('signupPhone').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            // Validate name (at least 2 characters, letters and spaces only)
+            if (name.length < 2 || !/^[a-zA-Z\s]+$/.test(name)) {
+                showError('signupMessage', 'Name must be at least 2 characters and contain only letters and spaces');
+                return;
+            }
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showError('signupMessage', 'Please enter a valid email address');
+                return;
+            }
+            
+            // Validate phone number (basic international format)
+            const phoneRegex = /^[\+]?[\d\s\-\(\)]{10,}$/;
+            if (!phoneRegex.test(phone)) {
+                showError('signupMessage', 'Please enter a valid phone number (minimum 10 digits)');
+                return;
+            }
+            
+            // Validate password strength
+            if (password.length < 8) {
+                showError('signupMessage', 'Password must be at least 8 characters long');
+                return;
+            }
+            
+            if (!/(?=.*[a-z])/.test(password)) {
+                showError('signupMessage', 'Password must contain at least one lowercase letter');
+                return;
+            }
+            
+            if (!/(?=.*[A-Z])/.test(password)) {
+                showError('signupMessage', 'Password must contain at least one uppercase letter');
+                return;
+            }
+            
+            if (!/(?=.*\d)/.test(password)) {
+                showError('signupMessage', 'Password must contain at least one number');
+                return;
+            }
+            
+            if (!/(?=.*[@$!%*?&])/.test(password)) {
+                showError('signupMessage', 'Password must contain at least one special character (@$!%*?&)');
+                return;
+            }
+            
+            // Validate password confirmation
+            if (password !== confirmPassword) {
+                showError('signupMessage', 'Passwords do not match!');
+                return;
+            }
+            
+            // Simulate signup
+            currentUser = { email: email, name: name };
+            
+            const message = document.getElementById('signupMessage');
+            message.textContent = 'Account created successfully! Welcome to NextPay!';
+            message.className = 'success-message';
+            message.style.display = 'block';
+            
+            setTimeout(() => {
+                showPage('dashboard');
+            }, 1500);
+        }
+
+        function handleTransfer(event) {
+            event.preventDefault();
+            const recipientName = document.getElementById('recipientName').value;
+            const amount = document.getElementById('transferAmount').value;
+            const method = document.getElementById('transferMethod').value;
+            
+            const message = document.getElementById('transferMessage');
+        
+
+            message.textContent = `Transfer of $${amount} to ${recipientName} initiated via ${method} method.`;
+            message.className = 'success-message';
+            message.style.display = 'block';
+
+            // Optionally reset the form
+            event.target.reset();
+
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 5000);
+        }
+
+        function selectInsurance(cardElement, planName) {
+            // Deselect all cards
+            document.querySelectorAll('.insurance-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // Select the clicked card
+            cardElement.classList.add('selected');
+            selectedInsurance = planName;
+        }
+        function purchaseInsurance() {
+    const message = document.getElementById('insuranceMessage');
+
+    if (!selectedInsurance) {
+        showError('insuranceMessage', 'Please select an insurance plan before proceeding.');
+        return;
+    }
+
+    fetch('/api/insurance', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            email: currentUser.email,
+            plan: selectedInsurance
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            message.textContent = `You have successfully purchased the ${selectedInsurance} plan.`;
+            message.className = 'success-message';
+        } else {
+            showError('insuranceMessage', data.message);
+        }
+        message.style.display = 'block';
+        setTimeout(() => { message.style.display = 'none'; }, 5000);
+    })
+    .catch(() => showError('insuranceMessage', 'Server error'));
+}
+
+
+        function handleTransfer(event) {
+    event.preventDefault();
+
+    const recipientName = document.getElementById('recipientName').value;
+    const recipientEmail = document.getElementById('recipientEmail').value;
+    const recipientCountry = document.getElementById('recipientCountry').value;
+    const amount = document.getElementById('transferAmount').value;
+    const method = document.getElementById('transferMethod').value;
+    const messageNote = document.getElementById('transferMessage').value;
+
+    fetch('/api/transfer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            senderEmail: currentUser.email,
+            recipientName,
+            recipientEmail,
+            recipientCountry,
+            amount,
+            method,
+            message: messageNote
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        const message = document.getElementById('transferMessage');
+        if (data.success) {
+            message.textContent = `Transfer of $${amount} to ${recipientName} successful via ${method}.`;
+            message.className = 'success-message';
+            event.target.reset();
+        } else {
+            showError('transferMessage', data.message);
+        }
+        message.style.display = 'block';
+        setTimeout(() => { message.style.display = 'none'; }, 5000);
+    })
+    .catch(() => showError('transferMessage', 'Server error'));
+}
+
+
+       function handleSignup(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const phone = document.getElementById('signupPhone').value;
+    const country = document.getElementById('signupCountry').value;
+    const password = document.getElementById('signupPassword').value;
+    const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+    if (password !== confirmPassword) {
+        showError('signupMessage', 'Passwords do not match!');
+        return;
+    }
+
+    fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, country, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            currentUser = data.user;
+            document.getElementById('signupMessage').textContent = 'Account created successfully!';
+            document.getElementById('signupMessage').className = 'success-message';
+            document.getElementById('signupMessage').style.display = 'block';
+            setTimeout(() => showPage('dashboard'), 1500);
+        } else {
+            showError('signupMessage', data.message || 'Signup failed');
+        }
+    })
+    .catch(() => showError('signupMessage', 'Server error'));
+
+}
+
+    </script>
+</body>
+</html>
